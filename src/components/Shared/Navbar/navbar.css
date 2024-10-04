@@ -1,0 +1,79 @@
+
+.side-menu {
+    position: absolute;
+    display: block;
+    height: 100vh;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    animation: anime .5s;
+}
+
+
+.side-menu-2 {
+    position: absolute;
+    height: 100vh;
+    width: 85%;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px 20px;
+    animation: anime2 1.5s;
+}
+
+
+
+/* Animation keyframes for background and sliding menu */
+@keyframes anime {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes anime2 {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 85%;
+    }
+}
+
+
+/* Close menu with Animation */
+
+.side-menu.closing {
+    animation: closingAnime .5s forwards; 
+}
+
+.side-menu-2.close {
+    animation: closingAnime2 2s forwards; 
+}
+
+/* Keyframes for closing menu */
+@keyframes closingAnime {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+
+@keyframes closingAnime2 {
+    0% {
+        width: 85%;
+    }
+    100% {
+        width: 0%;
+    }
+}
