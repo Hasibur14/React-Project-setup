@@ -4,7 +4,6 @@ import { FiChevronDown, FiChevronUp, FiMenu, FiX } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import "./navbar.css";
 
-
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [servicesOpen, setServicesOpen] = useState(false);
@@ -27,51 +26,104 @@ const Navbar = () => {
         setServicesOpen(!servicesOpen);
     };
 
-   
-    const closeMenuOnNavItemClick = () => {
+    const handleLinkClick = () => {
+        // Close the menu when a link is clicked (mobile)
         setMenuOpen(false);
-        setIsClosing(false); 
     };
-    
-
-
-
 
     return (
         <nav className="bg-white shadow">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0">
-                        <img src="/path-to-logo.png" alt="Logo" className="h-8" />
+                        {/* <img src="/path-to-logo.png" alt="Logo" className="h-8" /> */}
+                        <h2 className='text-3xl font-bold'>Heaven</h2>
                     </div>
 
                     {/* Menu for larger screens */}
                     <div className="hidden md:flex space-x-4 items-center">
-                        <NavLink to="/" className="block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white">Home</NavLink>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive ? "block px-4 py-2 text-white bg-green-600 rounded" :
+                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                            }
+                            onClick={handleLinkClick}
+                        >
+                            Home
+                        </NavLink>
+
+                        {/* Service menu Item with mega menu */}
                         <div className="relative group">
                             <button
                                 onMouseEnter={toggleServices}
-                                className="text-gray-800 hover:bg-green-600 hover:text-white flex items-center"
+                                className="text-gray-800 py-2 px-3  rounded hover:bg-green-600 hover:text-white flex items-center"
                             >
-                                Services {servicesOpen ? <FiChevronUp /> : <FiChevronDown />}
+                                Services {servicesOpen ? <FiChevronUp className='ml-1 text-xl' /> : <FiChevronDown className='ml-1 text-xl' />}
                             </button>
 
                             {/* Mega menu */}
                             {servicesOpen && (
                                 <div
                                     onMouseLeave={() => setServicesOpen(false)}
-                                    className="absolute left-0 mt-2 w-48 bg-white shadow-lg py-2 transition-all ease-in-out duration-300"
+                                    className="mega-menu"
                                 >
-                                    <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">IT Consultancy</a>
-                                    <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Managed IT</a>
-                                    <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Digital Marketing</a>
-                                    <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Technology Training</a>
+                                    <NavLink to="/a" onClick={handleLinkClick} className={({ isActive }) =>
+                                        isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                            "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                        IT Consultancy
+                                    </NavLink>
+                                    <NavLink to="/b" onClick={handleLinkClick} className={({ isActive }) =>
+                                        isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                            "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                        Managed IT
+                                    </NavLink>
+                                    <NavLink to="/c" onClick={handleLinkClick} className={({ isActive }) =>
+                                        isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                            "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                        Digital Marketing
+                                    </NavLink>
+                                    <NavLink to="/d" onClick={handleLinkClick} className={({ isActive }) =>
+                                        isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                            "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                        Technology Training
+                                    </NavLink>
                                 </div>
                             )}
                         </div>
-                        <a href="#" className="text-gray-800 hover:bg-green-600 hover:text-white px-4 py-2">Solutions </a>
-                        <a href="#" className="text-gray-800 hover:bg-green-600 hover:text-white px-4 py-2">About </a>
-                        <a href="#" className="text-gray-800 hover:bg-green-600 hover:text-white px-4 py-2">Contact</a>
+
+
+
+                        <NavLink
+                            to="/blog"
+                            className={({ isActive }) =>
+                                isActive ? "block px-4 py-2 text-white bg-green-600 rounded" :
+                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                            }
+                            onClick={handleLinkClick}
+                        >
+                            Blog
+                        </NavLink>
+                        <NavLink
+                            to="/about"
+                            className={({ isActive }) =>
+                                isActive ? "block px-4 py-2 text-white bg-green-600 rounded" :
+                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                            }
+                            onClick={handleLinkClick}
+                        >
+                            About
+                        </NavLink>
+                        <NavLink
+                            to="/contact"
+                            className={({ isActive }) =>
+                                isActive ? "block px-4 py-2 text-white bg-green-600 rounded" :
+                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                            }
+                            onClick={handleLinkClick}
+                        >
+                            Contact
+                        </NavLink>
                     </div>
                     <div className="hidden md:flex">
                         <button className="ml-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">
@@ -92,43 +144,111 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
+
+            {/* 
+            ------------------------------------------------------------
+                                     MOBILE DEVICE NAVBAR
+            ------------------------------------------------------------ */}
+
             {(menuOpen && !isClosing) && (
                 <div className="side-menu">
                     <div className="side-menu-2">
                         <div className="flex justify-between items-center p-4">
-                            <img src="/path-to-logo.png" alt="Logo" className="h-8" />
-                            <button onClick={toggleMenu}>
+                            {/* <img src="/path-to-logo.png" alt="Logo" className="h-8" /> */}
+                            <h2 className='text-3xl font-bold'>Heaven</h2>
+                            <button
+                                onClick={toggleMenu}>
                                 <FiX className="text-4xl text-black border-2 p-1 hover:bg-red-500 hover:text-white rounded" />
                             </button>
                         </div>
                         <div className="mt-4">
-                            <NavLink 
-                                to="/" 
-                                className="block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white" 
-                                onClick={closeMenuOnNavItemClick}  // Close menu on click
-                            >
+                            <NavLink
+                                to="/"
+                                onClick={handleLinkClick}
+                                className={({ isActive }) =>
+                                    isActive ? "block px-4 py-2 text-green-600 font-bold hover:bg-green-600 hover:text-white " :
+                                        "block px-4 py-2 text-gray-900 "} >
                                 Home
                             </NavLink>
-                            <div>
-                                <button onClick={toggleServices} className="w-full text-left px-4 py-2 flex justify-between text-gray-800">
+
+                            <div
+                                className={({ isActive }) =>
+                                    isActive ? "block px-4 py-2 text-green-600 font-bold hover:bg-green-600 hover:text-white " :
+                                        "block px-4 py-2 text-gray-900 "}>
+                                <button
+                                    onClick={toggleServices}
+                                    className="w-full  text-left px-4 py-2 flex justify-between text-gray-800">
                                     Services
                                     <span className='border-2 active:border-green-500 active:text-green-500 px-1.5 py-.5 rounded-xl'>
                                         {servicesOpen ? <FiChevronUp /> : <FiChevronDown />}
                                     </span>
                                 </button>
                                 {servicesOpen && (
-                                    <div className="pl-8">
-                                        <a href="#" className="block px-4 py-2 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>IT Consultancy</a>
-                                        <a href="#" className="block px-4 py-2 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>Managed IT</a>
-                                        <a href="#" className="block px-4 py-2 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>Digital Marketing</a>
-                                        <a href="#" className="block px-4 py-2 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>Technology Training</a>
+                                    <div className="pl-8 text-[13px] space-y-2">
+                                        <NavLink to="/"
+                                            onClick={handleLinkClick}
+                                            className={({ isActive }) =>
+                                                isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                            IT Consultancy
+                                        </NavLink>
+                                        <NavLink
+                                            to="/"
+                                            onClick={handleLinkClick}
+                                            className={({ isActive }) =>
+                                                isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                            Managed IT
+                                        </NavLink>
+                                        <NavLink
+                                            to="/"
+                                            onClick={handleLinkClick}
+                                            className={({ isActive }) =>
+                                                isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                            Digital Marketing
+                                        </NavLink>
+                                        <NavLink
+                                            to="/"
+                                            onClick={handleLinkClick}
+                                            className={({ isActive }) =>
+                                                isActive ? "block px-4 py-1 rounded text-white bg-green-600" :
+                                                    "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"} >
+                                            Technology Training
+                                        </NavLink>
                                     </div>
                                 )}
                             </div>
-                            <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>Solutions</a>
-                            <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>About</a>
-                            <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white" onClick={closeMenuOnNavItemClick}>Contact</a>
+                            <NavLink
+                                to="/blog"
+                                onClick={handleLinkClick}
+                                className={({ isActive }) =>
+                                    isActive ? "block px-4 py-2 text-white bg-green-600 rounded" :
+                                        "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                                }
+                            >
+                                Blog
+                            </NavLink>
+                            <NavLink
+                                to="/about"
+                                onClick={handleLinkClick}
+                                className={({ isActive }) =>
+                                    isActive ? "block px-4 py-2 text-white bg-green-600 rounded" :
+                                        "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                                }
+                            >
+                                About
+                            </NavLink>
+                            <NavLink
+                                to="/contact"
+                                onClick={handleLinkClick}
+                                className={({ isActive }) =>
+                                    isActive ? "block px-4 py-2 text-green-600 " :
+                                        "block px-4 py-2 text-gray-800 hover:bg-green-600 hover:text-white"
+                                }
+                            >
+                                Contact
+                            </NavLink>
                         </div>
                         {/* Button in the Mobile Menu */}
                         <div className="mt-4 px-4">
@@ -140,11 +260,10 @@ const Navbar = () => {
 
             {isClosing && (
                 <div className="side-menu closing">
-                    <div className="side-menu-2 close"></div>
+                    <div className="side-menu-2 closing"></div>
                 </div>
             )}
         </nav>
     );
 };
-
 export default Navbar;
